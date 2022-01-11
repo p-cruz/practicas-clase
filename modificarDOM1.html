@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table{
+           border:2px solid black;
+        }
+    </style>
+    <script>
+        function saludo(mensaje, veces){
+            /*version1*/
+            /*var tabla="<table>";
+            for (i=0; i<veces; i++ ){
+                tabla+="<tr><td>"+ mensaje + "</tr></td>";
+                debugger;
+            }
+            tabla+="</table>";
+            document.getElementById('tabla').innerHTML=tabla;
+            */
+            /*version2*/
+            /*
+            var tabla=document.getElementById('tabla');
+            var fila, celda;
+            for (i=0; i<veces; i++ ){
+                console.log(i);
+                fila = tabla.insertRow(i);
+                celda = fila.insertCell(0);
+                celda.innerHTML=  mensaje;
+            }*/
+            var tabla = document.getElementById("tabla");
+            var fila, celda, textocelda;
+            for (i=0; i<veces; i++ ){
+                fila = document.createElement("tr");
+                celda = document.createElement("td");
+                textoCelda = document.createTextNode(mensaje);
+                celda.appendChild(textoCelda);
+                fila.appendChild(celda);
+                tabla.appendChild(fila);
+            }
+        }
+    </script>
+</head>
+<body>
+    <form name="miFormulario">
+        <label for="mensaje">Escribe el mensaje:</label>
+        <input type="text" id="mensaje" name="mensaje"><br><br>
+        <label for="veces">Indica la cantidad de veces que quieres mostrar el mensaje:</label>
+        <input type="number" id="veces" name="veces">
+    </form>
+    <p onclick="saludo(document.miFormulario.mensaje.value , document.miFormulario.veces.value);">Haz clic para probarme</p>
+    <table id="tabla">
+    </table>
+    
+</body>
+</html>
