@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function cambiar(decimal){
+            var binario="";
+            while (decimal>1){
+                binario+=decimal%2;
+                decimal=(decimal-(decimal%2))/2;
+            }
+            binario+=decimal;
+            document.getElementById('resultado').innerHTML="Binario = "+ binario.split("").reverse().join("");
+
+        }
+    </script>
+</head>
+<body>
+    <form name="miForm">
+		Numero decimal = <input type="number" id="n1" name="n1"></br>    
+	</form>
+    <button onclick="cambiar(parseInt(document.getElementById('n1').value))">
+        Cliquea aquí para calcular el paso a binario
+    </button>
+    <div id="resultado">Binario</div>
+</body>
+</html>
