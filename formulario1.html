@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form name="miFormulario" action="">
+        <label for="nombre">Nombre</label>
+        <input type="text" name="nombre" id="nombre"><br>
+        <label for="edad">Edad</label>
+        <input type="number" name="edad" id="edad"><br>
+        <label for="salario">Salario [100-4000]</label>
+        <input type="number" name="salario" id="salario"><br>
+        <label for="procedencia">Procedencia</label>
+        <input type="radio" name="procedencia" id="procedencia" value="mancha" onchange="eligeOtraProcedencia()">La Mancha
+        <input type="radio" name="procedencia" id="procedencia" value="madrid" onchange="eligeOtraProcedencia()">Madrid
+        <input type="radio" name="procedencia" id="procedencia" value="andalucia" onchange="eligeOtraProcedencia()">Andalucia
+        <input type="radio" name="procedencia" id="procedencia" value="otra" onchange="eligeOtraProcedencia()">Otra<br>
+        <div id="otraProcedencia" style="display:none">
+            <label for="otraProc">Indica la procedencia</label>
+            <input type="text" id="otraProc" name="otraProc">
+        </div>
+        <label for="aficiones">Aficiones</label>
+        <input type="checkbox" id="aficiones" name="aficiones" value="musica">Música
+        <input type="checkbox" id="aficiones" name="aficiones" value="deporte">Deporte
+        <input type="checkbox" id="aficiones" name="aficiones" value="otras">Otras<br>
+        <label for="estudios">Estudios actuales</label>
+        <select name="estudios" id="estudios" onclick="eligeEstudios()">
+            <option value="">Elige opción</option>
+            <option value="informatica">Informática</option>
+            <option value="electronica">Electrónica</option>
+            <option value="cocina">Cocina</option>
+            <option value="otros">Otros</option>
+        </select>
+        <div id="otrosEstudios" style="visibility:hidden">
+            <label for="otros">Indica los estudios</label>
+            <input type="text" id="otros" name="otros">
+        </div>
+        <br>    
+        <input type="button" value="validar y enviar" onclick="validaYEnvia()">
+    </form>
+    <script>
+        function validaYEnvia(){
+            if (document.miFormulario.nombre.value.length==0){
+                alert("Introduce un nombre correcto");
+                document.miFormulario.nombre.focus();
+                return false;
+            }
+            if (document.miFormulario.edad.value <18){
+                alert("Debe ser mayor de edad");
+                document.miFormulario.edad.focus();
+                return false;
+            }
+            if (document.miFormulario.salario.value<100 || document.miFormulario.salario.value>4000){
+                alert("Salario incorrecto");
+                document.miFormulario.salario.focus();
+                return false;
+            }
+            if (!document.miFormulario.procedencia[0].checked && !document.miFormulario.procedencia[1].checked && !document.miFormulario.procedencia[2].checked && !document.miFormulario.procedencia[3].checked){
+                alert("Procedencia incorrecta");
+                return false;
+            }
+            if (document.miFormulario.procedencia[3].checked && document.miFormulario.otraProc.value.length==0){
+                alert("Indica la otra procedencia");
+                document.miFormulario.otraProc.focus();
+                return false;
+            }
+            if  (!document.miFormulario.aficiones[0].checked &&
+                !document.miFormulario.aficiones[1].checked  &&
+                !document.miFormulario.aficiones[2].checked ){
+                    alert("Indica alguna afición")
+                    return false;
+                }
+            console.log("estudios elegidos: "+document.miFormulario.estudios.selectedIndex)
+            if (document.miFormulario.estudios.selectedIndex==0){
+                alert("Elige un estudio actual válido")
+                return false;
+            }
+            if (document.miFormulario.estudios.selectedIndex==4 && document.miFormulario.otros.value.length==0){
+                alert("Indica los estudios realizados");
+                document.miFormulario.otros.focus();
+                return false;
+            }
+            console.log("enviar al servidor")
+        }
+
+        function eligeEstudios(){
+            if (document.miFormulario.estudios.selectedIndex==4){
+                document.getElementById("otrosEstudios").style.visibility="visible";
+            }else {
+                document.getElementById("otrosEstudios").style.visibility="hidden";
+            }
+        }
+
+        function eligeOtraProcedencia(){
+            if (document.miFormulario.procedencia[3].checked){
+                document.getElementById("otraProcedencia").style.display="block";
+            }else {
+                document.getElementById("otraProcedencia").style.display="none";
+            }
+        }
+    </script>
+</body>
+</html>
