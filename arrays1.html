@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="meses"></div>
+    <div id="precipMensuales"></div>
+    <div id="mediaAnual"></div>
+    <div id="maxAnual"></div>
+    <div id="minAnual"></div>
+    <script>
+        var meses=['Enero', 'Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+        var precipitacionesMensuales=[];
+        generaAleatoriosPrecipMensuales();
+        document.getElementById("precipMensuales").innerHTML=precipitacionesMensuales.toString();
+        var media=calculaMediaPrecipAnual()
+        document.getElementById("mediaAnual").innerHTML=`<h2>Media de precipitaciones anual = ${media}</h2>` 
+        
+        
+        
+        function generaAleatoriosPrecipMensuales(){
+            for (let contador=0; contador<12;contador++){
+                precipitacionesMensuales.push(Math.floor(Math.random()*101))
+            }
+        }
+
+        function calculaMediaPrecipAnual(){
+            var media=0;
+            for (let contador=0; contador<12;contador++){
+                media+=precipitacionesMensuales[contador]
+            }
+            return media/12;
+        }
+    </script>
+</html>
