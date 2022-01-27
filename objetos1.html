@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*class Vehiculo{
+            constructor (mar,mod,mat){
+                this.marca=mar;
+                this.modelo=mod;
+                this.matricula=mat;
+            }
+            describe(){
+                return `El vehículo con marca ${this.marca}, model ${this.modelo} y matrícula ${this.matricula}`
+            }
+        }*/
+        var Vehiculo1={
+            marca:"Seat",
+            modelo:"Ibiza",
+            matricula:"1111-CBN"
+        }
+        //let miVehiculo=new Vehiculo("Opel", "Corsa", "7549-FGD")
+        let vehiculo2=Object.create(Vehiculo1);
+        console.log(vehiculo2.marca)
+        console.log(vehiculo2.modelo)
+        //console.log (miVehiculo.marca + " "+ miVehiculo.modelo)
+        //console.log(miVehiculo.describe())
+        //console.log(miVehiculo.describe)
+    </script>
+</body>
+</html>
